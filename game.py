@@ -10,6 +10,7 @@ class Game:
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN|pygame.SCALED)
         self.font = pygame.font.Font(FONT, TILESIZE)
         self.running = True
+        self.fps = 60
 
         self.states = []
         self.splash_screen = SplashScreen(self)
@@ -86,7 +87,7 @@ class Game:
     
     def loop(self):
         while self.running:
-            dt = self.clock.tick()/1000
+            dt = self.clock.tick(self.fps)/1000
             self.get_inputs()
             self.states[-1].update(dt)
             self.states[-1].draw(self.screen)
